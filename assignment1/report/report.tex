@@ -16,8 +16,65 @@
 Introduce ISN - explain the model and its components
 
 Inhibitory neurons maintain the network activity in a balanced
-regime, preventing runaway excitation. This is achieved by the
-inhibitory neurons being activated by the excitatory neurons.
+regime, preventing endless excitation, preventing the network from 
+being functional and balanced. This is achieved by the
+inhibitory neurons being activated by the excitatory neurons, to which they
+are connected via synapses.
+The ISN neurons can be described by the following 2 equations:
+
+\begin{equation}
+    \tau_E \frac{dV_E}{dt} = 
+    -(V_E - V_{\text{rest}}) 
+    + W_{EE} \varphi(V_E) 
+    - W_{EI} \varphi(V_I) + u_E
+\end{equation}
+
+\begin{equation}
+    \tau_I \frac{dV_I}{dt} = 
+    -(V_I - V_{\text{rest}}) 
+    + W_{IE} \varphi(V_E) 
+    - W_{II} \varphi(V_I) + u_I
+\end{equation}
+
+They describe Excitatory (E) and Inhibitory (I) neuron behaviour.
+To understand how the 2 come together, it is important to understand 
+the underlying model of a nueron and how the interaction is introduced.
+
+\subsection{Leaky Integrate-and-Fire Neuron}
+\{equation\}
+
+Breakdown:
+1. change in membrane potential is modelled as an ODE 
+2. Tau - time for a signal to fully be absorbed
+3. Resting potential
+4. Conductance
+5. External current
+
+External current is the component of interest - it allows
+to establish a communcation channel between the nuerons - 
+the \textbf{total} synaptic current of the adjacent neurons 
+is the external input to each indivudual neuron.
+
+\{equations for modelling synaptic current \}
+
+\subsection{Considerations}
+1. The model keeps the key mechanisms of a real neural network - oscillations, 
+reaction to external input, delayed reaction, inter-neural interactions
+
+2. While capturing important features, the model abstracts away the 
+full detail of chemical \& biological structure of the cells and the medium around them 
+to spare the  complexity in order to make the model cheaper computationally and more
+tractable analytically. 
+
+2. The "transfer function" is linear, whereas in reality
+it is driven by a stochastically opening and closing ion-channels, which would
+have a different shape
+
+3. The model is a lot more computationally affordable - we can run large scale simulations
+on 1 ODE per Neuron, instead of 4 as it is with the biologically more plausible Hodgkin-Huxley model
+
+4. Simpler model also is more amenable to theoretic analysis - helps to understand
+network stability, activity patterns and interpret them.
 
 
 
