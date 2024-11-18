@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber report"] 1731883885.57118 "report.bcf" "report.bbl" "report" 1731883891.60507 0
+["biber report"] 1731930020.72296 "report.bcf" "report.bbl" "report" 1731931092.11312 0
   "references.bib" 1731883844 1537 1174d01204931cda076f708783798668 ""
-  "report.bcf" 1731883891 108877 96cc131c3687847089f40e4f58ff709f "pdflatex"
+  "report.bcf" 1731931091 108877 96cc131c3687847089f40e4f58ff709f "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1731883890.30487 "c:/Uni/CNS/assignment1/report/report.tex" "report.pdf" "report" 1731883891.60624 0
-  "C:/Users/plush/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1731880492 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1731931090.79435 "c:/Uni/CNS/assignment1/report/report.tex" "report.pdf" "report" 1731931092.11401 0
+  "C:/Users/plush/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1731930151 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/plush/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1731581364 11986914 25fdd0cbd85e269bca36fcbf66509609 ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -81,6 +81,8 @@
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/biblatex/blx-dm.def" 1711466047 32761 18d14e3b502c120f79b2184de4e21d14 ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/biblatex/cbx/numeric.cbx" 1711466047 4629 cda468e8a0b1cfa0f61872e171037a4b ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/biblatex/lbx/english.lbx" 1711466047 40021 daa5a82ed0967f3ac4b77cb8384cac55 ""
+  "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption.sty" 1696169587 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
+  "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption3.sty" 1696169587 72619 ee90b6612147680fd73c3b1406a74245 ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/csquotes/csquotes.cfg" 1712234901 7068 06f8d141725d114847527a66439066b6 ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/csquotes/csquotes.def" 1712234901 22135 0975a49eeaed232aa861e9425ffb2e7c ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/csquotes/csquotes.sty" 1712234901 62767 e79d6d7a989e7da62dcf3d0a65c1faee ""
@@ -103,13 +105,14 @@
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/logreq/logreq.sty" 1280941015 6187 b27afc771af565d3a9ff1ca7d16d0d46 ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/tools/multicol.sty" 1730400552 32879 f4cfa2226c995da5b04a89ee47abf182 ""
   "C:/Users/plush/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Uni/CNS/assignment1/report/report.tex" 1731883883 7661 9b1b0cbb06beb104ce9e6b5cdc08e603 ""
-  "images/12-E_input.png" 1731881776 73707 0832da90062837bb771a4b0ab2d1331b ""
-  "images/12-I_input.png" 1731881767 84120 1ef9bd0916b5498bfeb6b8ee875c408c ""
-  "report.aux" 1731883891 2129 3b54b867e757d91e6d5ec21bf1e43ff5 "pdflatex"
-  "report.bbl" 1731883887 8215 3678f619e7a8f24e618e5f96acfa3183 "biber report"
-  "report.run.xml" 1731883891 2319 1dbeae9c91c70510d621aca3b4772e83 "pdflatex"
-  "report.tex" 1731883883 7661 9b1b0cbb06beb104ce9e6b5cdc08e603 ""
+  "c:/Uni/CNS/assignment1/report/report.tex" 1731931088 10029 20342289b091ca7f06b88c0a0847185a ""
+  "images/12-E_input.png" 1731928196 70438 3e898a36493daedb8944b31de03d1270 ""
+  "images/12-I_input.png" 1731928186 79614 43ef9c07d87bc4b925c04dce1306e788 ""
+  "images/12-stable.png" 1731928953 69988 c5e9f265d4a6988e9f9a5a45f3ab253d ""
+  "report.aux" 1731931091 3017 caec60dc3ec21846237decf64df78cde "pdflatex"
+  "report.bbl" 1731930022 8215 3678f619e7a8f24e618e5f96acfa3183 "biber report"
+  "report.run.xml" 1731931091 2319 1dbeae9c91c70510d621aca3b4772e83 "pdflatex"
+  "report.tex" 1731931088 10029 20342289b091ca7f06b88c0a0847185a ""
   (generated)
   "report.aux"
   "report.bcf"

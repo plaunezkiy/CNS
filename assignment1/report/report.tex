@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage[left=1.5cm, right=1.5cm]{geometry}
 \usepackage{csquotes}
+\usepackage{caption}
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage[backend=biber]{biblatex}
@@ -35,6 +36,10 @@ This allows the network to stabilise, earning it the name Inhibitory-Stabilised 
 
 To understand how the system comes together, it is important to get a sense of what 
 the underlying model of each individual nueron is and how the interaction between them integrates.
+
+% #######################
+% Model of the Neuron
+% #######################
 
 \subsection{Leaky Integrate-and-Fire Neuron}
 In 1907, Louis Édouard Lapicque \cite{brunel2007quantitative} introduced 
@@ -109,7 +114,7 @@ Combing all component, we obtain a system of equations:
 where $V_{\text{rest}}$ is the resting potential of the neuron, $W_{k}$ are the 
 synaptic weights, $u_k$ are the external inputs to neurons, 
 and $\phi(V)$ is the transfer function of a neuron, that acts as 
-a communication channel between the neurons and is defined as a ReLU function:
+a communication channel between the neurons and is defined as a scaled ReLU function:
 
 \begin{equation}
     \phi(V) = \beta[V-V_0]_+
@@ -144,20 +149,80 @@ to theoretic analysis, which helps to explain certain activity patterns in the n
 In essence, we trade off biological accuracy for 
 computational efficiency and analytic tractability.
 
+
+% ####################### 
+% COMPUTER SIMULATIONS
+% #######################
+
 \section{Computer Simulations}
-In this section, the results of the computer simulations of the network.
+In this section, simulations of the network are presented,
+where the network is stimulated with various external inputs for 
+both excitatory and inhibitory pools, and the
+response of the network is approximated numerically using the Euler method.
+
+In our simulations, we study 2 networks with the following base parameters:
+% V_rest
+$$
+V_{\text{rest}} = -70 \text{mV, } V_0 = -55 \text{mV, } \beta = 1
+$$
+
+% tau
+$$
+\tau 
+= \begin{pmatrix} \tau_E \\ \tau_I \end{pmatrix} 
+= \begin{pmatrix} 20 \\ 10 \end{pmatrix}\text{ms} 
+$$
+
+% Us
+$$
+u
+= \begin{pmatrix} u_E \\ u_I \end{pmatrix}
+= \begin{pmatrix} 20 \\ 20 \end{pmatrix}
+$$
+
+% Ws
+$$
+W 
+= \begin{pmatrix} W_{EE} & W_{EI} \\ W_{IE} & W_{II} \end{pmatrix}
+= \begin{pmatrix} W^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
+$$
+
+Where $W^n_{EE}$ is the weight of the excitatory feedback for a given network.
+The 2 networks differ in the weight of the excitatory feedback, where one is weaker 
+is $W^1_{EE} = 0.5$ and the other is stronger $W^2_{EE} = 1.25$.
+
+\subsection{Stable External Input}
+We first study both networks with a stable external input of 20mV to both neurons.
+Both neurons start from the resting potential. The simulation is ran for 500ms 
+with 1ms time steps. The results are shown in Figure \ref{fig:stable-input}.
+
+Looking at the results for network 1 (solid lines), we can see that both neurons
+gradually begin responding to the external input, and at some point begin firing
 
 \begin{figure*}
     \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=1\textwidth]{images/12-stable.png}
+    \caption{\textbf{Stable} external input to both neurons.\\ Excitatory potentials are red, inhibitory potentials are blue. \\Network 1 is solid, Network 2 is dashed.}
+    \label{fig:stable-input}
+\end{figure*}
+
+\subsection{External Inhibitory Input Increase}
+
+
+\begin{figure*}
+    \centering
+    \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-I_input.png}
-    \caption{External inhibitory input}
+    \caption{External \textbf{inhibitory} input increase after 500ms. \\Excitatory potentials are red, inhibitory potentials are blue.\\Network 1 is solid, Network 2 is dashed.}
     \label{fig:i-input}
 \end{figure*}
 
 \begin{figure*}
     \centering
+    \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-E_input.png}
-    \caption{External excitatory input}
+    \caption{External \textbf{excitatory} input increase after 500ms. Excitatory potentials are red, inhibitory potentials are blue.\\Network 1 is solid, Network 2 is dashed.}
     \label{fig:e-input}
 \end{figure*}
 

@@ -55,6 +55,10 @@ INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\csquotes\csquotes.d
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\csquotes\csquotes.cfg
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\csquotes\csquotes.cfg
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\csquotes\csquotes.cfg
+INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
+INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption3.sty
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\tex\latex\graphics\graphics.sty
@@ -179,6 +183,13 @@ INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\plush\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 OUTPUT report.pdf
 INPUT C:\Users\plush\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT .\images\12-stable.png
+INPUT .\images\12-stable.png
+INPUT .\images\12-stable.png
+INPUT .\images\12-stable.png
+INPUT .\images\12-stable.png
+INPUT .\images\12-stable.png
+INPUT .\images\12-stable.png
 INPUT .\images\12-I_input.png
 INPUT .\images\12-I_input.png
 INPUT .\images\12-I_input.png
