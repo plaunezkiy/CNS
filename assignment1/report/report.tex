@@ -135,6 +135,7 @@ subject to plasticity, and can change over time.
 The weights themeselves are a heuristic approximation,
 by making which we sacrifice details of
 spiking patterns assuming them to be a linear function of the voltage.
+* assumes constant voltage - not realistic
 
 3. The membrane time constant that comes from conductance is assumed
 to be constant, and relies on Ohm's law, which is a simplification of
@@ -146,6 +147,8 @@ per neuron in the HH model, instead of 1 in the LIF model,
 which allows us to run large scale simulations and analyse
 the network behaviour faster. The model is also more amenable
 to theoretic analysis, which helps to explain certain activity patterns in the network.
+
+5.
 
 In essence, we trade off biological accuracy for
 computational efficiency and analytic tractability.
@@ -242,15 +245,26 @@ this simulation are shown in Figure \ref{fig:i-input}.
 both neurons
 
 \subsection{Excitatory Input Increase Q5}
-
+Stable excitatory input - both networks increase activity and stabilise at a higher level.
+The gap between the 
 \begin{figure*}
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-E_input.png}
-    \caption{External \textbf{excitatory} input increase after 500ms. \\
+    \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ unclapmed \\
         Excitatory potentials are red, inhibitory potentials are blue.\\
         Network 1 is solid, Network 2 is dashed.}
-    \label{fig:e-input}
+    \label{fig:e-input-unclamped}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=1\textwidth]{images/12-E_input_V_I_clamped.png}
+    \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ clapmed \\
+        Excitatory potentials are red, inhibitory potentials are blue.\\
+        Network 1 is solid, Network 2 is dashed.}
+    \label{fig:e-input-clamped}
 \end{figure*}
 
 \subsection{Stabilisation and Paradoxical Inhibition Q6}
