@@ -1,5 +1,4 @@
 \documentclass[10pt,twocolumn]{article}
-
 \usepackage[english]{babel}
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -10,7 +9,7 @@
 \usepackage{multicol}
 \usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{references.bib}
-\graphicspath{ {./images/} }
+% \graphicspath{ {./images/} }
 
 
 \begin{document}
@@ -58,9 +57,9 @@ The relationship between the current and the voltage across the capacitor is des
 $C = \frac{Q}{V}$, where $C$ is the capacitance, $Q$ is the charge stored in the capacitor, and $V$ is the voltage across the capacitor.
 Knowing this, the current in the circuit:
 
-$$
+\begin{equation}
     I = \frac{dQ}{dt} = \frac{dCV}{dt} = C \frac{dV}{dt}
-$$
+\end{equation}
 % Combining the two, we get: $C \frac{dV}{dt} = gV$.
 
 Real neurons, however, receive current from other neurons via dendrites from synapses,
@@ -75,14 +74,14 @@ Since the size of the cell and its channels is comparable to that of ions, effec
 and there exists a point, where one balances out the other, resulting in the zero net current flow.
 This point is called the resting potential $V_{rest}$ of the neuron, and therefore any current should be measured relative to this potential.
 
-$$
+\begin{equation}
     C \frac{dV}{dt} = -g_m(V - V_{\text{rest}}) + I_{\text{ext}}
-$$
+\end{equation}
 
 Dividing by conductance, we get the following equation:
-$$
+\begin{equation}
     \tau_m \frac{dV}{dt} = -(V - V_{\text{rest}}) + \frac{I_{\text{ext}}}{g_m}
-$$
+\end{equation}
 where $\tau_m$ is the membrane time constant, describing how quickly it reacts to input.
 
 Now, the external current is the component of interest,
@@ -148,7 +147,7 @@ which allows us to run large scale simulations and analyse
 the network behaviour faster. The model is also more amenable
 to theoretic analysis, which helps to explain certain activity patterns in the network.
 
-5.
+5. By modelling synaptic current as as a linear function of V, making a fat assumption
 
 In essence, we trade off biological accuracy for
 computational efficiency and analytic tractability.
@@ -166,30 +165,30 @@ response of the network is approximated numerically using the Euler method.
 
 In our simulations, we study 2 networks with the following base parameters:
 % V_rest
-$$
+\begin{equation}
     V_{\text{rest}} = -70 \text{mV, } V_0 = -55 \text{mV, } \beta = 1
-$$
+\end{equation}
 
 % tau
-$$
+\begin{equation}
     \tau
     = \begin{pmatrix} \tau_E \\ \tau_I \end{pmatrix}
     = \begin{pmatrix} 20 \\ 10 \end{pmatrix}\text{ms}
-$$
+\end{equation}
 
 % Us
-$$
+\begin{equation}
     u
     = \begin{pmatrix} u_E \\ u_I \end{pmatrix}
     = \begin{pmatrix} 20 \\ 20 \end{pmatrix}
-$$
+\end{equation}
 
 % Ws
-$$
+\begin{equation}
     W
     = \begin{pmatrix} W_{EE} & W_{EI} \\ W_{IE} & W_{II} \end{pmatrix}
     = \begin{pmatrix} W^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-$$
+\end{equation}
 
 Where $W^n_{EE}$ is the weight of the excitatory feedback for a given network.
 The 2 networks differ in the weight of the excitatory feedback, where one is weaker
@@ -313,25 +312,21 @@ To find the values of each term, Vs are factored out, and
 constant terms are grouped together based on equations (1) and (2).
 % grouping terms
 $$
-    \begin{align*}
-        \frac{d\textbf{V}_E}{dt}
-        = \textbf{V}_E \boxed{\frac{-1 + W_{EE}\beta}{\tau_E}}
-        + \textbf{V}_I \boxed{\frac{-W_{EI}\beta}{\tau_E}}+
-        \\
-        + \boxed{\frac{V_{rest} + V_0\beta(W_{EI}-W_{EE}) + u_E}{\tau_E}}
-    \end{align*}
+\begin{align*}
+    \frac{d\textbf{V}_E}{dt} &= \textbf{V}_E \boxed{\frac{-1 + W_{EE}\beta}{\tau_E}}
+    + \textbf{V}_I \boxed{\frac{-W_{EI}\beta}{\tau_E}} \\
+    &+ \boxed{\frac{V_{rest} + V_0\beta(W_{EI}-W_{EE}) + u_E}{\tau_E}}
+\end{align*}
 $$
 
 $$
     \begin{align*}
-        \frac{d\textbf{V}_I}{dt}
-        = \textbf{V}_E\boxed{\frac{W_{IE}\beta}{\tau_I}}
-        + \textbf{V}_I\boxed{\frac{-1 - W_{II}\beta}{\tau_I}}+
-        \\
-        + \boxed{\frac{V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I}{\tau_I}}
+        \frac{d\textbf{V}_I}{dt} &= \textbf{V}_E\boxed{\frac{W_{IE}\beta}{\tau_I}}
+        + \textbf{V}_I\boxed{\frac{-1 - W_{II}\beta}{\tau_I}} \\
+        &+ \boxed{\frac{V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I}{\tau_I}}
     \end{align*}
 $$
-% rewriting as matrix
+
 Now the system can be rewritten in the matrix form:
 $$
     \begin{align*}
@@ -434,7 +429,6 @@ $$
 
 \section{Conclusion}
 
-\pagebreak
 \pagebreak
 
 \printbibliography
