@@ -197,12 +197,6 @@ where $W^n_{EE}$ is the weight of the excitatory feedback for a given network.
 The 2 networks differ in the weight of the excitatory feedback, where one is weaker
 is $W^1_{EE} = 0.5$ and the other is stronger $W^2_{EE} = 1.25$.
 
-\subsection{Stable External Input (Q2)}
-We first study both networks subjected to a stable external input of 20mV to
-both neurons.
-Both neurons start from the resting potential. The simulation is ran for 500ms
-with 1ms time steps. The results are shown in Figure \ref{fig:stable-input}.
-
 \begin{figure*}
     \centering
     \captionsetup{justification=centering}
@@ -214,6 +208,12 @@ with 1ms time steps. The results are shown in Figure \ref{fig:stable-input}.
     }
     \label{fig:stable-input}
 \end{figure*}
+
+\subsection{Stable External Input (Q2)}
+We first study both networks subjected to a stable external input of 20mV to
+both neurons.
+Both neurons start from the resting potential. The simulation is ran for 500ms
+with 1ms time steps. The results are shown in Figure \ref{fig:stable-input}.
 
 Looking at the results for Network 1 (solid lines), we can see that both neurons
 gradually begin responding to the external input. Since $\tau_I < \tau_E$,
@@ -277,23 +277,15 @@ The results can be observed in \ref{fig:e-input-unclamped}
 As before, prior to the change, the system is in a stable state. When the
 excitatory neuron's external stimulation increases, unsurprising increase
 in excitatory activity follows, causing the inhibitory activity to rise
-[Equation (2)], which inhibits the excitatory neuron itself, flattening
-the rate of change and eventually stabilising the system. 
-All of the observations are intuitive and follow from the equations 
-describing the system. Both networks behave similraly, but of course, 
-with a subtle difference - before the increase, stable state of 
-both networks has the inhibitory potential above excitatory, 
+    [Equation (2)], which inhibits the excitatory neuron itself, flattening
+the rate of change and eventually stabilising the system.
+All of the observations are intuitive and follow from the equations
+describing the system. Both networks behave similraly, but of course,
+with a subtle difference - before the increase, stable state of
+both networks has the inhibitory potential above excitatory,
 in Network 1 that is still the case after the system adapts to the
 change, however in Network 2, the excitatory stable potential now
 exceeds that of the inhibitory.
-
-Stronger excitatory feedback combined with a relatively higher external 
-stimulation push the neuron towards an endless excitation, so the 
-inhibitory neuron by extension begins gauging the runaway activity,
-thus stabilising the network. This behaviour can once again be
-attributed to a different weight of the synaptic Excitatory feedback.
-
-This experiment showed that 
 
 \begin{figure*}
     \centering
@@ -304,6 +296,26 @@ This experiment showed that
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:e-input-unclamped}
 \end{figure*}
+
+Stronger excitatory feedback combined with a relatively higher external
+stimulation push the neuron towards an endless excitation, so the
+inhibitory neuron by extension begins gauging the runaway activity,
+thus stabilising the network. This behaviour can once again be
+attributed to a different weight of the synaptic Excitatory feedback.
+
+This experiment kept the network in tact, while stimulating the
+excitatory neuron and in both cases the system returned to a
+stable state. There is a very short delay before the inhibitory
+neuron begins catching up, which according to the Equation 1 and
+the observations confirms to us that the inhibitory neuron prevents
+the runaway excitation of E.
+
+In this next experiment, we will stimulate
+the excitatory neuron once again, but this time clamp the inhibitory
+neuron for it to remain at the resting potential. The results of this
+simulation are show in \ref{fig:e-input-clamped}.
+
+**WRITE THIS UP**
 
 \begin{figure*}
     \centering
@@ -316,20 +328,40 @@ This experiment showed that
 \end{figure*}
 
 \subsection{Stabilisation and Paradoxical Inhibition (Q6)}
-ISN if if the excitatory subnet is unstable in isolation
-but the full EI net is stable.
+To sum up findings so far: a network is called ISN if the Excitatory component is unstable
+alone, but combined with the inhibitory it is.
+The purpose of ISN is to prevent runaway excitation and
+maintain the balance in a neural network. Paradoxical inhibition is
+a counterintuitive reaction of a network, where external inhibitory input
+causes the overall activity of the network to decrease.
+Both are most certainly related to the external input, the synaptic weights
+and the intrinsic properties of each neuron. 
 
-Speculate on relationship between inhibitory stabilisation
-and paradoxical inhibition.
+Based on the simulations, it looks like it is more
+affected by the synaptic weights between neurons (including feedback)
+ when the system is adapting to the input to reach a stable state. 
+In particular, on the excitatory feedback strength relative to the 
+inhibitory feedback strength.
+
+Based on the above, it seems reasonable to suppose that 
+low $W_{EE}$ to $W_{II}$ ratio ($\le1$)  keeps the network stable and 
+high ($>1$) leads to an unstable behaviour, including paradoxical 
+inhibition and runaway excitation.
 
 \subsection{Discussion (Q7-8)}
-Why the simulations are not sufficient to explain
-the relationship between the inhibitory stabilisation
-and paradoxical inhibition. How to do it more generally
+The model has $2\times 6=12$ parameters that can be varied and that 
+might influence the behaviour. And while the first 10 of them are 
+describing the system, the other 2 - external inputs - can 
+vary in time and running simulations on a certain pattern of 
+external input does not definitively explain the relationship. 
+One alternative way to analyse the model to gain more insight 
+into how inhibitory stabilisation relates to the paradoxical inhibition, 
+we might look at a more theoretic approach, including 
+mathematical analysis of the system. 
 
-Assuming the relationship holds, suggest an experiment
+\textbf{Assuming the relationship holds, suggest an experiment
 to test whether brain networks are in the ISN regime.
-Any caveats to the experiment?
+Any caveats to the experiment?}
 
 \section{Mathematical Analysis}
 In this section, we will provide a mathematical analysis
@@ -428,16 +460,15 @@ $$
         \begin{pmatrix}
             \textbf{V}^\ast_E \\ \textbf{V}^\ast_I
         \end{pmatrix}
-        =
+         & =
         -\begin{pmatrix}
              A_{EE} & A_{EI} \\
              A_{IE} & A_{II}
          \end{pmatrix}^{-1}
         \begin{pmatrix}
             \textbf{x}_E \\ \textbf{x}_I
-        \end{pmatrix}
-        =
-        \\
+        \end{pmatrix} \\
+         & =
         \frac{-1}{det(A)}
         \begin{pmatrix}
             A_{II}  & -A_{EI} \\
