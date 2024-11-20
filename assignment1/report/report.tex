@@ -7,11 +7,24 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{multicol}
+\usepackage{listings}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{references.bib}
 % \graphicspath{ {./images/} }
-
+\lstdefinestyle{python}{
+    language=Python,
+    backgroundcolor=\color{lightgray},
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false
+}
 
 \begin{document}
 
@@ -202,8 +215,8 @@ is $W^1_{EE} = 0.5$ and the other is stronger $W^2_{EE} = 1.25$.
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-stable.png}
     \caption{
-        \textbf{Stable} external input to both neurons.\\
-        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue. \\
+        \textbf{Stable} external input to both neurons.\hspace{\textwidth}
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\hspace{\textwidth}
         Network 1 is solid, Network 2 is dashed.
     }
     \label{fig:stable-input}
@@ -234,8 +247,8 @@ is needed to balance out $V_I$.
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-I_input.png}
-    \caption{External \textbf{inhibitory} input increase after 500ms.\\
-        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\\
+    \caption{External \textbf{inhibitory} input increase after 500ms.\hspace{\textwidth}
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\hspace{\textwidth}
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:i-input}
 \end{figure*}
@@ -291,8 +304,8 @@ exceeds that of the inhibitory.
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-E_input.png}
-    \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ unclapmed \\
-        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\\
+    \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ unclapmed \hspace{\textwidth}
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\hspace{\textwidth}
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:e-input-unclamped}
 \end{figure*}
@@ -314,15 +327,22 @@ In this next experiment, we will stimulate
 the excitatory neuron once again, but this time clamp the inhibitory
 neuron for it to remain at the resting potential. The results of this
 simulation are show in \ref{fig:e-input-clamped}.
-
-**WRITE THIS UP**
+With the inhibitory neuron clamped, the excitatory neuron is free to
+excite indefinitely, however, in network 1, the activity eventually stabilises
+as the inhibitory neuron still provides feedback to the excitatory neuron.
+In network 2, on the other hand, the excitatory feedback is much stronger
+relative to the inhibitory, and the E neuron continues increasing activity
+indefinitely. To spare the scale of indefinite (bilogoically unrealistic) 
+simulation, I have limited the max voltage displayed on the graph, but it is
+clear that the activity explodes in the first 100ms, even before the 
+external input is increased.
 
 \begin{figure*}
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-E_input_V_I_clamped.png}
-    \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ clapmed \\
-        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\\
+    \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ clapmed \hspace{\textwidth}
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\hspace{\textwidth}
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:e-input-clamped}
 \end{figure*}
@@ -349,19 +369,48 @@ high ($>1$) leads to an unstable behaviour, including paradoxical
 inhibition and runaway excitation.
 
 \subsection{Discussion (Q7-8)}
-The model has $2\times 6=12$ parameters that can be varied and that 
-might influence the behaviour. And while the first 10 of them are 
-describing the system, the other 2 - external inputs - can 
-vary in time and running simulations on a certain pattern of 
-external input does not definitively explain the relationship. 
+The simulations above gave us a glimpse of what the network response
+is like under different conditions to variying external inputs.
+However, the simulations are limited in that they only show what 
+it looks like given the input we have manually set, and therefore
+do not provide a comprehensive understanding of the network behaviour.
+Given that the model has $2\times 6=12$ parameters for 2 neurons,
+and each can be varied to influence the behaviour.
+%  
+And while the first 10 of them are describing the neurons, 
+the other 2 do external inputs, which can vary in time and shape and 
+running simulations on a specific pattern of external input might not 
+definitively explain the relationship in general.
 One alternative way to analyse the model to gain more insight 
 into how inhibitory stabilisation relates to the paradoxical inhibition, 
 we might look at a more theoretic approach, including 
 mathematical analysis of the system. 
-
-\textbf{Assuming the relationship holds, suggest an experiment
-to test whether brain networks are in the ISN regime.
-Any caveats to the experiment?}
+% 
+Another way would be to try and limit the scope of the problem
+by limiting parameters we're simulating for based on the biological data.
+Those can be estimated from data gathered in vitro or in vivo, 
+we could study the brain further to understand what the sources
+of external input are, and how they vary in time and space,
+Tsodyks highlights \cite{tsodyks1997paradoxical} that there are 
+Theta and Gamma oscillations in the brain, which are common
+sources of external input to the network.
+% 
+Since the model is based on several big assumptions, how can we be sure
+that the networks in brain are in fact operating in the ISN regime?
+One way to test this would be to record the activity of the neurons
+and observe the activity (using EEG or fMRI) given different
+stimuli. This is an overly simplistic approach, and the brain has
+many components, each with its own dynamics and local networks,
+all of which together interfere with the activity of the network,
+and it's hard to isolate the isolate both the network activity
+and the inputs to it.
+Another way would be to use a novel optogenetics approach
+to embed light-sensitive channels into neural membrane and 
+manipulate the activity with light. This approach allows for high 
+precision and control over the activity of the neurons, but 
+is limited to animal models and is not yet ready for 
+human use \cite{sadeh2021inhibitory}.
+%  
 
 \section{Mathematical Analysis}
 In this section, we will provide a mathematical analysis
@@ -411,7 +460,7 @@ $$
 
 Now the system can be rewritten in the matrix form:
 $$
-    \begin{align*}
+    \begin{gathered}
         \frac{d\textbf{V}}{dt}
         =
         \begin{pmatrix}
@@ -427,7 +476,7 @@ $$
             \frac{V_{rest} + V_0\beta(W_{EI}-W_{EE}) + u_E}{\tau_E} \\
             \frac{V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I}{\tau_I}
         \end{pmatrix}
-    \end{align*}
+    \end{gathered}
 $$
 
 
@@ -479,45 +528,148 @@ $$
         \end{pmatrix}
     \end{align*}
 $$
+To compute the determinant:
+$$
+    \begin{gathered}
+        \textbf{det(A)} = A_{EE}A_{II} - A_{EI}A_{IE} \\
+        = (W_{EE}\beta-1)(-W_{II}\beta-1) - W_{EI}\beta (-W_{IE}\beta)\\
+        = \boxed{\beta^2(W_{IE}W_{EI}-W_{EE}W_{II}) + \beta(W_{II}+W_{EE}) + 1}
+    \end{gathered}
+$$
 
 From the solution, we can derive the expression for
-inhibitory voltage $V^\ast_I$ in terms of network parameters:
+inhibitory steady state voltage $\textbf{V}^\ast_I$ in terms of network parameters:
 
 $$
-    \begin{align*}
-        V^\ast_I
+    \begin{gathered}
+        \textbf{V}^\ast_I
         = \frac{-(- A_{IE}\textbf{x}_E + A_{EE}\textbf{x}_I)}{det(A)}
-        = \frac{A_{IE}\textbf{x}_E - A_{EE}\textbf{x}_I}{det(A)}
-        % 
-        \\
-        = \frac{W_{IE}\beta \textbf{x}_E - (W_{EE}\beta - 1) \textbf{x}_I}{det(A)}
-    \end{align*}
+        = \frac{A_{IE}\textbf{x}_E - A_{EE}\textbf{x}_I}{det(A)}\\
+        = \boxed{\frac{W_{IE}\beta \textbf{x}_E - (W_{EE}\beta - 1) \textbf{x}_I}{det(A)}}
+    \end{gathered}
 $$
 
+To try and understand why the paradoxical inhibition occurs, we can study
+what happens to the stable state inhibitory voltage when the external
+inhibitory input is changing. To do so, we can differentiate $\textbf{V}^\ast_I$
+with respect to $\textbf{u}_I$:
 
+$$
+    \begin{gathered}
+        \frac{d\textbf{V}^\ast_I}{d\textbf{u}_I}
+        = \frac{d}{du_I}\left(\frac{W_{IE}\beta \textbf{x}_E - (W_{EE}\beta - 1) \textbf{x}_I}{det(A)}\right)\\
+        = \frac{W_{IE}\beta}{det(A)}\times\frac{d\textbf{x}_E}{d\textbf{u}_I} 
+        - \frac{W_{EE}\beta - 1}{det(A)}\times\frac{d\textbf{x}_I}{d\textbf{u}_I}\\
+        %
+        = \frac{W_{IE}\beta}{det(A)}\times 0 
+        - \frac{W_{EE}\beta - 1}{det(A)}\times 1\\ 
+        = \boxed{\frac{-W_{EE}\beta + 1}{det(A)}}
+    \end{gathered}
+$$
 
-% A weights
-% \begin{pmatrix}
-%     -1 + w_{EE}\beta & -w_{EI}\beta     \\
-%     w_{IE}\beta      & -1 - w_{II}\beta
-% \end{pmatrix}
+To spare the complexity of the full expansion, both expressions keep 
+$\textbf{x}_E$ and $\textbf{x}_I$ as variables, but they can be 
+substituted with the actual values of the external input
+derived above. The complete derivation can be found in the Appendix.
 
-% X weights
-% \begin{pmatrix}
-%     V_{rest} + V_0\beta(W_{EI}-W_{EE}) + u_E \\
-%     V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I
-% \end{pmatrix}
+In the simulations, we observed that the both neurons' steady state
+voltage (plateau value) decreased when the external inhibitory input $\textbf{u}_I$ increased.
+To understand why this is happening, we can look at the conditions
+under which this occurs. That is, when the derivative with respect to
+external inhibitory input is negative:
 
-\section{Conclusion (Q12-13)}
+$$
+    \frac{d\textbf{V}^\ast_I}{d\textbf{u}_I}=\frac{-W_{EE}\beta + 1}{det(A)} < 0
+$$
+
+This gives us 2 cases to consider:
+$$
+    \begin{cases}
+        -W_{EE}\beta + 1 > 0 & \text{if } det(A) < 0 \\
+        -W_{EE}\beta + 1 < 0 & \text{if } det(A) > 0
+    \end{cases}
+$$
+The 2 cases give us the exact conditions under which the paradoxical inhibition occurs.
+
+\section{Discussion (Q12)}
+In the simulations, we observed the behaviour of the 2 networks,
+reacting to changes in external output and concluded that 
+paradoxical inhibition had something to do with external input
+and the weight of the synaptic excitatory feedback. 
+To recap, the networks had the following weights: $W^1_{EE} = 0.5$ and $W^2_{EE} = 1.25$.
+And it was Network 2 that exhibited the paradoxical inhibition.
+Now that we have a mathematical explanation of this behaviour, let us 
+compare the findings. Assuming that the system is not stable when $det(A) < 0$, 
+the first inequality case can be ignored. The second case tells us that
+the paradoxical inhibition occurs when $-W_{EE}\beta + 1 < 0$,
+or when $W_{EE} > \frac{1}{\beta}$. Provided that $\beta = 1$, so
+the condition becomes $\textbf{W}_{EE} > \textbf{1}$.
+Clearly, Network 2 satisfies the condition and the puzzle is solved.
+
+As mentioned before, the purpose of the ISN is to maintain the balance
+and prevent endless excitation, while paradoxical inhibition is the overall
+decrease in network activity due to increased input. Since the parameter 
+of interest here is Excitatory feedback weight, the relationship could
+be generalised to being a kill switch when the excitatory activity
+becomes too high and inhibits the network accordingly.
+
+\section{Paradoxical Excitation (Q13)}
+To hypothesize, whether a analogus process - Paradoxical Excitation - could take place,
+we can define this similarly to Paradoxical Inhibition. That would mean
+the overall network activity decreases as external excitatory input $u_E$
+increases. Similarly, we can look at the derivative of the stable state 
+voltage $\textbf{V}^\ast_E$ with respect to $u_E$:
+$$
+    \begin{gathered}
+        \frac{d\textbf{V}^\ast_E}{d\textbf{u}_E}
+        = \frac{d}{du_E}\left(-\frac{(-W_{II}\beta-1) \textbf{x}_E + W_{EI}\beta \textbf{x}_I}{det(A)}\right)\\
+        = \frac{W_{II}\beta+1}{det(A)}\times 1 
+        - \frac{W_{EI}\beta}{det(A)}\times 0\\
+        = \boxed{\frac{W_{II}\beta+1}{det(A)}}
+    \end{gathered}
+$$
+Following the same logic as before, the paradoxical excitation occurs
+when the derivative is negative, or when $W_{II}\beta + 1 < 0$.
+This gives us the condition under which the paradoxical excitation occurs.
+Skipping the negative determinant case, we can conclude that for the
+paradoxical excitation to occur, the condition is $W_{II}\beta < -1$.
+It is unclear how to interpret negative weights, as technically
+that violates the Dale's Law, since our model accounts for inhibitory
+input as negative, and therefore making it act as excitatory. 
+So the paradoxical excitation might is not possible in this model.
+
+\section{Conclusion}
+To conclude, we have introduced the concept of Inhibitory-Stabilised Networks,
+derived the model, simulated the network and analysed it mathematically, to investigate
+ the dynamics of a neural network with 2 pools of neurons.
+
+The model, based on a leaky integrate-and-fire, captures the essential 
+interactions within neural circuits, in which the excitatory feedback can lead to 
+runaway activity, but inhibitory feedback counters this, stabilizing the network. 
+Over the simulations, the behavior of networks with differing excitatory feedback strengths was 
+examined under varying external inputs, demonstrating the roles of synaptic weights and external 
+stimulation in modulating network activity.
+
+The simulations showed that networks with weaker excitatory feedback (Network 1) stabilize 
+effectively in response to increased external input, exemplifying typical inhibitory-stabilized 
+network behavior. In contrast, networks with stronger excitatory feedback (Network 2) 
+exhibit paradoxical inhibition, where increased inhibitory input paradoxically results 
+in an overall reduction of network activity. Mathematical analysis supports these observations, 
+providing more concrete explanation for how synaptic weights, and in particular the 
+excitatory feedback strength, influence the stability 
+and paradoxical responses of the network. 
+
 
 \clearpage
-% \newpage
 \printbibliography
 
 \clearpage
 \appendix
 \section{Appendix}
-\label{Code}
-% \input{images/code.ipynb}
+
+\begin{lstlisting}[style=python,caption=Python code for simulations]
+import numpy as np
+import matplotlib.pyplot as plt
+\end{lstlisting}
 
 \end{document}
