@@ -7,6 +7,7 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{multicol}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{references.bib}
 % \graphicspath{ {./images/} }
@@ -57,9 +58,9 @@ The relationship between the current and the voltage across the capacitor is des
 $C = \frac{Q}{V}$, where $C$ is the capacitance, $Q$ is the charge stored in the capacitor, and $V$ is the voltage across the capacitor.
 Knowing this, the current in the circuit:
 
-\begin{equation}
+$$
     I = \frac{dQ}{dt} = \frac{dCV}{dt} = C \frac{dV}{dt}
-\end{equation}
+$$
 % Combining the two, we get: $C \frac{dV}{dt} = gV$.
 
 Real neurons, however, receive current from other neurons via dendrites from synapses,
@@ -74,14 +75,14 @@ Since the size of the cell and its channels is comparable to that of ions, effec
 and there exists a point, where one balances out the other, resulting in the zero net current flow.
 This point is called the resting potential $V_{rest}$ of the neuron, and therefore any current should be measured relative to this potential.
 
-\begin{equation}
+$$
     C \frac{dV}{dt} = -g_m(V - V_{\text{rest}}) + I_{\text{ext}}
-\end{equation}
+$$
 
 Dividing by conductance, we get the following equation:
-\begin{equation}
+$$
     \tau_m \frac{dV}{dt} = -(V - V_{\text{rest}}) + \frac{I_{\text{ext}}}{g_m}
-\end{equation}
+$$
 where $\tau_m$ is the membrane time constant, describing how quickly it reacts to input.
 
 Now, the external current is the component of interest,
@@ -129,25 +130,26 @@ great detail by the Hodgkin-Huxley model \cite{hodgkin1952quantitative}, which i
 a more biologically plausible model of the neuron,
 but is also signficantly more complex.
 
-2. Synaptic weights are assumed to be constant, whereas in reality they are
+2. Synaptic weights are a heuristic approximation of synpatic conductances
+and assumed to be constant, whereas in reality they are
 subject to plasticity, and can change over time.
-The weights themeselves are a heuristic approximation,
-by making which we sacrifice details of
-spiking patterns assuming them to be a linear function of the voltage.
-* assumes constant voltage - not realistic
+
+3. The input activity from the opposite neural pool is treated as a
+linear function of its voltage with an activation threshold,
+which is not realistic as neurons spiking activity varies depending
+on its structure and intrinsic properties \cite{izhikevich2003simple}.
 
 3. The membrane time constant that comes from conductance is assumed
-to be constant, and relies on Ohm's law, which is a simplification of
-the actual behaviour of the neuron.
-However, it is a good approximation for the passive dynamics of a neuron.
+to be constant, and its usage relies on Ohm's law holding, which is
+a simplification of the actual behaviour of a neuron.
+However, it is a good approximation for the passive dynamics of a neuron
+which makes the model tractable for analysis.
 
 4. The LIF model is a lot more computationally affordable, requires 4 ODEs
 per neuron in the HH model, instead of 1 in the LIF model,
 which allows us to run large scale simulations and analyse
 the network behaviour faster. The model is also more amenable
 to theoretic analysis, which helps to explain certain activity patterns in the network.
-
-5. By modelling synaptic current as as a linear function of V, making a fat assumption
 
 In essence, we trade off biological accuracy for
 computational efficiency and analytic tractability.
@@ -162,35 +164,36 @@ In this section, simulations of the network are presented,
 where the network is stimulated with various external inputs for
 both excitatory and inhibitory pools, and the
 response of the network is approximated numerically using the Euler method.
+Python code used for simulations can be found in Appendix A.
 
 In our simulations, we study 2 networks with the following base parameters:
 % V_rest
-\begin{equation}
+$$
     V_{\text{rest}} = -70 \text{mV, } V_0 = -55 \text{mV, } \beta = 1
-\end{equation}
+$$
 
 % tau
-\begin{equation}
+$$
     \tau
     = \begin{pmatrix} \tau_E \\ \tau_I \end{pmatrix}
     = \begin{pmatrix} 20 \\ 10 \end{pmatrix}\text{ms}
-\end{equation}
+$$
 
 % Us
-\begin{equation}
+$$
     u
     = \begin{pmatrix} u_E \\ u_I \end{pmatrix}
     = \begin{pmatrix} 20 \\ 20 \end{pmatrix}
-\end{equation}
+$$
 
 % Ws
-\begin{equation}
+$$
     W
     = \begin{pmatrix} W_{EE} & W_{EI} \\ W_{IE} & W_{II} \end{pmatrix}
     = \begin{pmatrix} W^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-\end{equation}
+$$
 
-Where $W^n_{EE}$ is the weight of the excitatory feedback for a given network.
+where $W^n_{EE}$ is the weight of the excitatory feedback for a given network.
 The 2 networks differ in the weight of the excitatory feedback, where one is weaker
 is $W^1_{EE} = 0.5$ and the other is stronger $W^2_{EE} = 1.25$.
 
@@ -206,17 +209,17 @@ with 1ms time steps. The results are shown in Figure \ref{fig:stable-input}.
     \includegraphics[width=1\textwidth]{images/12-stable.png}
     \caption{
         \textbf{Stable} external input to both neurons.\\
-        Excitatory potentials are red, inhibitory potentials are blue. \\
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue. \\
         Network 1 is solid, Network 2 is dashed.
     }
     \label{fig:stable-input}
 \end{figure*}
 
-Looking at the results for network 1 (solid lines), we can see that both neurons
+Looking at the results for Network 1 (solid lines), we can see that both neurons
 gradually begin responding to the external input. Since $\tau_I < \tau_E$,
-one might expect the inhibitory neuron (blue) to respond faster, which is
+one might expect the \textcolor{blue}{inhibitory} neuron to respond faster, which is
 exactly what is observed. The transfer function $\phi(V)$ is not immediately
-responding to the increase in voltage as a neuron has to reach the threshold
+responding to the increase in voltage as both neurons have to reach the threshold
 potential, which matches with the timeline of both neurons reaching $V_0=-55mV$
 and begin firing to provide input to the other. After about $5\tau$, as
 expected with a capacitor behaviour, the system reaches a stable state
@@ -227,31 +230,77 @@ excitation of I is stronger than inhibition of E, and therefore less $V_E$
 is needed to balance out $V_I$.
 
 \subsection{Inhibitory Input Increase (Q3-4)}
-The network is further simulated for another 500ms with
-the increase of $u_I$ from $20$ to $26$mV. The results for
-this simulation are shown in Figure \ref{fig:i-input}.
-
 \begin{figure*}
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-I_input.png}
     \caption{External \textbf{inhibitory} input increase after 500ms.\\
-        Excitatory potentials are red, inhibitory potentials are blue.\\
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\\
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:i-input}
 \end{figure*}
 
-both neurons
+Both networks are simulated for further 500ms with
+an increase in $u_I$ from $20$mV to $26$mV. The results for
+this simulation are shown in Figure \ref{fig:i-input}.
 
-\subsection{Excitatory Input Increase Q5}
-Stable excitatory input - both networks increase activity and stabilise at a higher level.
-The gap between the 
+Network 1, prior to the $u_I$ increase, is in a stable state, and immediately after
+inhibitory activity naturally increases. As $V_I$ increases, according to
+eqaution (1), $V_E$ decreases, which is expected. 10ms later, inhibitory activity
+peaks and then drops slightly to stabilise once again, the peak and drop can be
+explained by equation (2), that tells us that $V_I$ depends on weighted ReLU'd
+activity of $V_E$, which has been decreasing previously and therefore at some point
+decreasing excitatory activity will begin balancing out external inhibitory input
+and we'd expect the network to begin approaching a stable state. Stable state
+is eventually reached at about 570ms, where potentials settle once again, however,
+$V_I$ is above its previous stable value, and $V_E$ is below. This makes sense
+following the logic from the stable external input simulation - stronger $W_{IE}$
+connection tells us that less excitatory activity is needed to
+balance out the inhibitory.
+
+For Network 2 (dashed lines), the results are similar but with a subtle difference. Both pools
+are responding to the input as described above: inhibitory spike, then excitatory dip,
+followed by the dip in inhibitory activity and eventual stabilisation. However,
+this time round, the final stable state is below the original for both neurons,
+which seems counterintuitive as the increase in inhibitory activity leads
+to a reduction in the activity of the whole network. The paradox here would
+be that, for some reason, the activity is not balancing like in Network 1,
+but decreases overall. Since the only parameter that differs is the
+$W_{EE}$ synaptic weight, the behaviour can attributed to it.
+
+\subsection{Excitatory Input Increase (Q5)}
+We will now simulate an increase in external Excitatory input, unlike Inhibitory
+in the previous section. Similarly, both neurons are reaching a stable state
+with constant 20mV input to both, when a similar increase to 26mV in $u_E$ occurs.
+The results can be observed in \ref{fig:e-input-unclamped}
+
+As before, prior to the change, the system is in a stable state. When the
+excitatory neuron's external stimulation increases, unsurprising increase
+in excitatory activity follows, causing the inhibitory activity to rise
+[Equation (2)], which inhibits the excitatory neuron itself, flattening
+the rate of change and eventually stabilising the system. 
+All of the observations are intuitive and follow from the equations 
+describing the system. Both networks behave similraly, but of course, 
+with a subtle difference - before the increase, stable state of 
+both networks has the inhibitory potential above excitatory, 
+in Network 1 that is still the case after the system adapts to the
+change, however in Network 2, the excitatory stable potential now
+exceeds that of the inhibitory.
+
+Stronger excitatory feedback combined with a relatively higher external 
+stimulation push the neuron towards an endless excitation, so the 
+inhibitory neuron by extension begins gauging the runaway activity,
+thus stabilising the network. This behaviour can once again be
+attributed to a different weight of the synaptic Excitatory feedback.
+
+This experiment showed that 
+
 \begin{figure*}
     \centering
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-E_input.png}
     \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ unclapmed \\
-        Excitatory potentials are red, inhibitory potentials are blue.\\
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\\
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:e-input-unclamped}
 \end{figure*}
@@ -261,19 +310,19 @@ The gap between the
     \captionsetup{justification=centering}
     \includegraphics[width=1\textwidth]{images/12-E_input_V_I_clamped.png}
     \caption{External \textbf{excitatory} input increase after 500ms. $V_I$ clapmed \\
-        Excitatory potentials are red, inhibitory potentials are blue.\\
+        \textcolor{red}{Excitatory} potentials are red, \textcolor{blue}{Inhibitory} potentials are blue.\\
         Network 1 is solid, Network 2 is dashed.}
     \label{fig:e-input-clamped}
 \end{figure*}
 
-\subsection{Stabilisation and Paradoxical Inhibition Q6}
+\subsection{Stabilisation and Paradoxical Inhibition (Q6)}
 ISN if if the excitatory subnet is unstable in isolation
 but the full EI net is stable.
 
 Speculate on relationship between inhibitory stabilisation
 and paradoxical inhibition.
 
-\subsection{Discussion Q7-8}
+\subsection{Discussion (Q7-8)}
 Why the simulations are not sufficient to explain
 the relationship between the inhibitory stabilisation
 and paradoxical inhibition. How to do it more generally
@@ -287,9 +336,10 @@ In this section, we will provide a mathematical analysis
 of the network model and explore the relationship between
 the inhibitory stabilisation and paradoxical inhibition.
 
-Assuming, $V > V_0$,
+Assuming, $V > V_0$, we can drop the non-lineraity of the activation
+function and expand the expression to do some algebra.
 
-\subsection{Reformulation Q9}
+\subsection{Reformulation (Q9)}
 To simplify the analysis, we can reformulate the system
 of equations describing the network and
 express it in the matrix-vector form:
@@ -312,18 +362,18 @@ To find the values of each term, Vs are factored out, and
 constant terms are grouped together based on equations (1) and (2).
 % grouping terms
 $$
-\begin{align*}
-    \frac{d\textbf{V}_E}{dt} &= \textbf{V}_E \boxed{\frac{-1 + W_{EE}\beta}{\tau_E}}
-    + \textbf{V}_I \boxed{\frac{-W_{EI}\beta}{\tau_E}} \\
-    &+ \boxed{\frac{V_{rest} + V_0\beta(W_{EI}-W_{EE}) + u_E}{\tau_E}}
-\end{align*}
+    \begin{align*}
+        \frac{d\textbf{V}_E}{dt} & = \textbf{V}_E \boxed{\frac{-1 + W_{EE}\beta}{\tau_E}}
+        + \textbf{V}_I \boxed{\frac{-W_{EI}\beta}{\tau_E}}                                           \\
+                                 & + \boxed{\frac{V_{rest} + V_0\beta(W_{EI}-W_{EE}) + u_E}{\tau_E}}
+    \end{align*}
 $$
 
 $$
     \begin{align*}
-        \frac{d\textbf{V}_I}{dt} &= \textbf{V}_E\boxed{\frac{W_{IE}\beta}{\tau_I}}
-        + \textbf{V}_I\boxed{\frac{-1 - W_{II}\beta}{\tau_I}} \\
-        &+ \boxed{\frac{V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I}{\tau_I}}
+        \frac{d\textbf{V}_I}{dt} & = \textbf{V}_E\boxed{\frac{W_{IE}\beta}{\tau_I}}
+        + \textbf{V}_I\boxed{\frac{-1 - W_{II}\beta}{\tau_I}}                                        \\
+                                 & + \boxed{\frac{V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I}{\tau_I}}
     \end{align*}
 $$
 
@@ -349,7 +399,7 @@ $$
 $$
 
 
-\subsection{Steady State Q10}
+\subsection{Steady State (Q10-11)}
 The steady state of the system $\textbf{V}^\ast_E,\textbf{V}^\ast_I$ is defined  by
 both derivatives being zero. Since $\tau$ are non-zero constant terms, we can drop
 them from the equation, and solve for the steady state:
@@ -409,7 +459,7 @@ $$
         = \frac{A_{IE}\textbf{x}_E - A_{EE}\textbf{x}_I}{det(A)}
         % 
         \\
-        = \frac{W_{IE}\beta \textbf{x}_E - W_{EE}\beta \textbf{x}_I}{det(A)}
+        = \frac{W_{IE}\beta \textbf{x}_E - (W_{EE}\beta - 1) \textbf{x}_I}{det(A)}
     \end{align*}
 $$
 
@@ -427,12 +477,16 @@ $$
 %     V_{rest} + V_0\beta(W_{II}-W_{IE}) + u_I
 % \end{pmatrix}
 
-\section{Conclusion}
+\section{Conclusion (Q12-13)}
 
-\pagebreak
-
+\clearpage
+% \newpage
 \printbibliography
 
+\clearpage
+\appendix
+\section{Appendix}
+\label{Code}
+% \input{images/code.ipynb}
+
 \end{document}
-
-

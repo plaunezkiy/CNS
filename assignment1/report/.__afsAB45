@@ -2349,11 +2349,13 @@
     <bcf:citekey order="3">abbott1999lapicque</bcf:citekey>
     <bcf:citekey order="4">efron1968psychopharmacology</bcf:citekey>
     <bcf:citekey order="5">hodgkin1952quantitative</bcf:citekey>
-    <bcf:citekey order="6">tsodyks1997paradoxical</bcf:citekey>
-    <bcf:citekey order="7">brunel2007quantitative</bcf:citekey>
-    <bcf:citekey order="8">abbott1999lapicque</bcf:citekey>
-    <bcf:citekey order="9">efron1968psychopharmacology</bcf:citekey>
-    <bcf:citekey order="10">hodgkin1952quantitative</bcf:citekey>
+    <bcf:citekey order="6">izhikevich2003simple</bcf:citekey>
+    <bcf:citekey order="7">tsodyks1997paradoxical</bcf:citekey>
+    <bcf:citekey order="8">brunel2007quantitative</bcf:citekey>
+    <bcf:citekey order="9">abbott1999lapicque</bcf:citekey>
+    <bcf:citekey order="10">efron1968psychopharmacology</bcf:citekey>
+    <bcf:citekey order="11">hodgkin1952quantitative</bcf:citekey>
+    <bcf:citekey order="12">izhikevich2003simple</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

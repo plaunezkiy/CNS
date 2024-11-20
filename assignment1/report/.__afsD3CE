@@ -1,0 +1,44 @@
+\relax 
+\providecommand\babel@aux[2]{}
+\@nameuse{bbl@beforestart}
+\abx@aux@refcontext{none/global//global/global}
+\abx@aux@cite{0}{tsodyks1997paradoxical}
+\abx@aux@segm{0}{0}{tsodyks1997paradoxical}
+\abx@aux@cite{0}{brunel2007quantitative}
+\abx@aux@segm{0}{0}{brunel2007quantitative}
+\abx@aux@cite{0}{abbott1999lapicque}
+\abx@aux@segm{0}{0}{abbott1999lapicque}
+\abx@aux@cite{0}{efron1968psychopharmacology}
+\abx@aux@segm{0}{0}{efron1968psychopharmacology}
+\babel@aux{english}{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Leaky Integrate-and-Fire Neuron}{1}{}\protected@file@percent }
+\abx@aux@cite{0}{hodgkin1952quantitative}
+\abx@aux@segm{0}{0}{hodgkin1952quantitative}
+\abx@aux@cite{0}{izhikevich2003simple}
+\abx@aux@segm{0}{0}{izhikevich2003simple}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Considerations (Q1)}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Computer Simulations}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Stable External Input (Q2)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Inhibitory Input Increase (Q3-4)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Excitatory Input Increase Q5}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Stabilisation and Paradoxical Inhibition Q6}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Discussion Q7-8}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Mathematical Analysis}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Reformulation Q9}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  \textbf  {Stable} external input to both neurons.  \leavevmode {\color  {red}Excitatory} potentials are red, \leavevmode {\color  {blue}Inhibitory} potentials are blue.   Network 1 is solid, Network 2 is dashed. \relax }}{4}{}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:stable-input}{{1}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces External \textbf  {inhibitory} input increase after 500ms.  \leavevmode {\color  {red}Excitatory} potentials are red, \leavevmode {\color  {blue}Inhibitory} potentials are blue.  Network 1 is solid, Network 2 is dashed.\relax }}{4}{}\protected@file@percent }
+\newlabel{fig:i-input}{{2}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces External \textbf  {excitatory} input increase after 500ms. $V_I$ unclapmed   \leavevmode {\color  {red}Excitatory} potentials are red, \leavevmode {\color  {blue}Inhibitory} potentials are blue.  Network 1 is solid, Network 2 is dashed.\relax }}{5}{}\protected@file@percent }
+\newlabel{fig:e-input-unclamped}{{3}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces External \textbf  {excitatory} input increase after 500ms. $V_I$ clapmed   \leavevmode {\color  {red}Excitatory} potentials are red, \leavevmode {\color  {blue}Inhibitory} potentials are blue.  Network 1 is solid, Network 2 is dashed.\relax }}{5}{}\protected@file@percent }
+\newlabel{fig:e-input-clamped}{{4}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Steady State Q10}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Appendix}{7}{}\protected@file@percent }
+\newlabel{Code}{{A}{7}}
+\abx@aux@read@bbl@mdfivesum{nohash}
+\abx@aux@read@bblrerun
+\gdef \@abspage@last{7}

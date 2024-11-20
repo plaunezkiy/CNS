@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.6.11)  19 NOV 2024 17:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.6.10)  20 NOV 2024 13:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -35,9 +35,9 @@ Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
 Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language22). Reported on input line 105.
+(babel)             (\language45). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language22). Reported on input line 108.
+(babel)             (\language45). Reported on input line 108.
 )) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
@@ -246,7 +246,24 @@ Package multicol Warning: May not work with the twocolumn option on input line 1
 \mult@nat@firstbox=\box95
 \colbreak@box=\box96
 \mc@col@check@num=\count294
-) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+)) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2022/02/02 v3.17 programmable bibliographies (PK/MW)
  (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
@@ -495,24 +512,24 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-
-No file report.aux.
+ (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -579,308 +596,164 @@ Package biblatex Info: Automatic encoding selection.
 \openout3 = `report.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'report.bbl' found.
- (./report.bbl)
-Package biblatex Info: Reference section=0 on input line 15.
-Package biblatex Info: Reference segment=0 on input line 15.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+Package biblatex Info: ... file 'report.bbl' not found.
+
+No file report.bbl.
+Package biblatex Info: Reference section=0 on input line 16.
+Package biblatex Info: Reference segment=0 on input line 16.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+)
+
+LaTeX Warning: Citation 'tsodyks1997paradoxical' on page 1 undefined on input line 24.
+
+
+LaTeX Warning: Citation 'brunel2007quantitative' on page 1 undefined on input line 45.
+
+
+LaTeX Warning: Citation 'abbott1999lapicque' on page 1 undefined on input line 50.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--51
+\OT1/cmr/m/n/10 In 1907, Louis []Edouard Lapicque
+ []
+
+
+Underfull \hbox (badness 3942) in paragraph at lines 45--51
+\OT1/cmr/m/n/10 [[]] in-tro-duced the con-cept of
+ []
+
+
+LaTeX Warning: Citation 'efron1968psychopharmacology' on page 1 undefined on input line 93.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: LaTeX Error: Environment pmatrrix undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.190     = \begin{pmatrrix}
-                             W^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Misplaced alignment tab character &.
-l.190     = \begin{pmatrrix} W^n_{EE} &
-                                        0.65 \\ 1.2 & 0.5 \end{pmatrix}
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Misplaced alignment tab character &.
-l.190 ...\begin{pmatrrix} W^n_{EE} & 0.65 \\ 1.2 &
-                                                   0.5 \end{pmatrix}
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Misplaced \crcr.
-\endarray ->\crcr 
-                  \egroup \egroup 
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Extra }, or forgotten \endgroup.
-\endarray ->\crcr \egroup 
-                          \egroup 
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Extra }, or forgotten \endgroup.
-\endarray ->\crcr \egroup \egroup 
-                                  
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Missing \endgroup inserted.
-<inserted text> 
-                \endgroup 
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Extra \right.
-\endpmatrix -> \endmatrix \right )
-                                  
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-I'm ignoring a \right that had no matching \left.
+LaTeX Warning: Citation 'hodgkin1952quantitative' on page 2 undefined on input line 129.
 
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: LaTeX Error: \begin{equation} on input line 187 ended by \end{pmatrix}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Missing $ inserted.
-<inserted text> 
-                $
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:190: Display math should end with $$.
-<to be read again> 
-                   \endgroup 
-l.190 ...^n_{EE} & 0.65 \\ 1.2 & 0.5 \end{pmatrix}
-                                                  
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
+Underfull \hbox (badness 1888) in paragraph at lines 127--132
+\OT1/cmr/m/n/10 ual ion chan-nels (both in so-mas and synapses), de-
+ []
 
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:191: LaTeX Error: Bad math environment delimiter.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.191 \end{equation}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:191: You can't use `\eqno' in horizontal mode.
-\endmathdisplay@a ...\df@tag \@empty \else \veqno 
-                                                  \alt@tag \df@tag \fi \ifx ...
-l.191 \end{equation}
-                    
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+Underfull \hbox (badness 1418) in paragraph at lines 127--132
+\OT1/cmr/m/n/10 scribed in great de-tail by the Hodgkin-Huxley model
+ []
 
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:191: LaTeX Error: \begin{document} ended by \end{equation}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.191 \end{equation}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:191: Missing $ inserted.
-<inserted text> 
-                $
-l.191 \end{equation}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:191: Display math should end with $$.
-<to be read again> 
-                   \endgroup 
-l.191 \end{equation}
-                    
-The `$' that I just saw supposedly matches a previous `$$'.
-So I shall assume that you typed `$$' both times.
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:191: Extra \endgroup.
-<recently read> \endgroup 
-                          
-l.191 \end{equation}
-                    
-Things are pretty mixed up, but I think the worst is over.
+LaTeX Warning: Citation 'izhikevich2003simple' on page 2 undefined on input line 140.
 
 
-LaTeX Warning: Reference `fig:stable-input' on page 2 undefined on input line 201.
+LaTeX Warning: Reference `fig:stable-input' on page 2 undefined on input line 204.
 
-<images/12-stable.png, id=16, 857.1222pt x 356.2911pt>
+[2]
+<images/12-stable.png, id=19, 857.1222pt x 356.2911pt>
 File: images/12-stable.png Graphic file (type png)
 <use images/12-stable.png>
-Package pdftex.def Info: images/12-stable.png  used on input line 206.
+Package pdftex.def Info: images/12-stable.png  used on input line 209.
 (pdftex.def)             Requested size: 528.93675pt x 219.88156pt.
-[2]
-
-LaTeX Warning: Reference `fig:i-input' on page 3 undefined on input line 232.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 <images/12-I_input.png, id=21, 854.2314pt x 356.2911pt>
 File: images/12-I_input.png Graphic file (type png)
 <use images/12-I_input.png>
-Package pdftex.def Info: images/12-I_input.png  used on input line 237.
+Package pdftex.def Info: images/12-I_input.png  used on input line 236.
 (pdftex.def)             Requested size: 528.93675pt x 220.62093pt.
+
+
+LaTeX Warning: Reference `fig:i-input' on page 3 undefined on input line 245.
+
 <images/12-E_input.png, id=22, 854.19125pt x 356.33125pt>
 File: images/12-E_input.png Graphic file (type png)
 <use images/12-E_input.png>
-Package pdftex.def Info: images/12-E_input.png  used on input line 252.
+Package pdftex.def Info: images/12-E_input.png  used on input line 276.
 (pdftex.def)             Requested size: 528.93675pt x 220.64578pt.
 <images/12-E_input_V_I_clamped.png, id=23, 854.19125pt x 356.33125pt>
 File: images/12-E_input_V_I_clamped.png Graphic file (type png)
 <use images/12-E_input_V_I_clamped.png>
-Package pdftex.def Info: images/12-E_input_V_I_clamped.png  used on input line 262.
+Package pdftex.def Info: images/12-E_input_V_I_clamped.png  used on input line 286.
 (pdftex.def)             Requested size: 528.93675pt x 220.64578pt.
+[3] [4 <./images/12-stable.png> <./images/12-I_input.png>] [5 <./images/12-E_input.png> <./images/12-E_input_V_I_clamped.png>]
 
-Underfull \vbox (badness 2229) has occurred while \output is active []
-
- [3 <./images/12-stable.png>] [4 <./images/12-I_input.png> <./images/12-E_input.png>]
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:319: Package amsmath Error: Erroneous nesting of equation structures;
+/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:343: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.319 \end{align*}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:327: Package amsmath Error: Erroneous nesting of equation structures;
-(amsmath)                trying to recover with `aligned'.
-
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.327     \end{align*}
+l.343     \end{align*}
                       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:348: Package amsmath Error: Erroneous nesting of equation structures;
+/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:351: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.348     \end{align*}
+l.351     \end{align*}
                       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[5 <./images/12-E_input_V_I_clamped.png>]
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:399: Package amsmath Error: Erroneous nesting of equation structures;
+/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:372: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.399     \end{align*}
+l.372     \end{align*}
                       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:413: Package amsmath Error: Erroneous nesting of equation structures;
+/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:423: Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
 
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.413     \end{align*}
+l.423     \end{align*}
                       
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \vbox (badness 4954) has occurred while \output is active []
+/afs/inf.ed.ac.uk/user/s21/s2150635/Desktop/CNS/assignment1/report/report.tex:437: Package amsmath Error: Erroneous nesting of equation structures;
+(amsmath)                trying to recover with `aligned'.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.437     \end{align*}
+                      
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[6]
+
+LaTeX Warning: Empty bibliography on input line 458.
+
+[7
 
 
-Underfull \hbox (badness 1888) in paragraph at lines 435--435
-[]\OT1/cmr/m/n/10 Larry F Ab-bott. \  Lapicque's in-tro-duc-tion of the
- []
 
-[6] (./report.aux)
+] (./report.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -897,18 +770,18 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 13987 strings out of 478287
- 257431 string characters out of 5849289
- 990299 words of memory out of 5000000
- 32049 multiletter control sequences out of 15000+600000
- 478556 words of font info for 64 fonts, out of 8000000 for 9000
+ 14493 strings out of 478287
+ 262924 string characters out of 5849289
+ 1007743 words of memory out of 5000000
+ 32549 multiletter control sequences out of 15000+600000
+ 477741 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,15n,68p,806b,1736s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (6 pages, 383714 bytes).
+ 60i,15n,68p,806b,1732s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on report.pdf (7 pages, 352001 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 102 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
