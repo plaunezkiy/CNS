@@ -8,23 +8,12 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{listings}
+\usepackage{minted}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[backend=biber,sorting=none]{biblatex}
 \addbibresource{references.bib}
 % \graphicspath{ {./images/} }
-\lstdefinestyle{python}{
-    language=Python,
-    backgroundcolor=\color{lightgray},
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\tiny\color{gray},
-    keywordstyle=\color{blue},
-    commentstyle=\color{green},
-    stringstyle=\color{red},
-    frame=single,
-    breaklines=true,
-    showstringspaces=false
-}
+\setminted[python]{breaklines}
 
 \begin{document}
 
@@ -285,7 +274,7 @@ $W_{EE}$ synaptic weight, the behaviour can attributed to it.
 We will now simulate an increase in external Excitatory input, unlike Inhibitory
 in the previous section. Similarly, both neurons are reaching a stable state
 with constant 20mV input to both, when a similar increase to 26mV in $u_E$ occurs.
-The results can be observed in \ref{fig:e-input-unclamped}
+The results can be observed in Figure \ref{fig:e-input-unclamped}
 
 As before, prior to the change, the system is in a stable state. When the
 excitatory neuron's external stimulation increases, unsurprising increase
@@ -326,7 +315,7 @@ the runaway excitation of E.
 In this next experiment, we will stimulate
 the excitatory neuron once again, but this time clamp the inhibitory
 neuron for it to remain at the resting potential. The results of this
-simulation are show in \ref{fig:e-input-clamped}.
+simulation are show in Figure \ref{fig:e-input-clamped}.
 With the inhibitory neuron clamped, the excitatory neuron is free to
 excite indefinitely, however, in network 1, the activity eventually stabilises
 as the inhibitory neuron still provides feedback to the excitatory neuron.
@@ -570,7 +559,7 @@ $$
 To spare the complexity of the full expansion, both expressions keep 
 $\textbf{x}_E$ and $\textbf{x}_I$ as variables, but they can be 
 substituted with the actual values of the external input
-derived above. The complete derivation can be found in the Appendix.
+derived above. The complete derivations can be found in the Appendix.
 
 In the simulations, we observed that the both neurons' steady state
 voltage (plateau value) decreased when the external inhibitory input $\textbf{u}_I$ increased.
@@ -665,11 +654,344 @@ and paradoxical responses of the network.
 
 \clearpage
 \appendix
-\section{Appendix}
-
-\begin{lstlisting}[style=python,caption=Python code for simulations]
+\section{Derivation of $\textbf{V}^\ast_I$ and $\frac{\textbf{V}^\ast_I}{d\textbf{u}_I}$}
+% \noindent
+\begin{figure}[ht]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=1\textwidth]{images/Vi_derivation.png}
+    \label{fig:vi-derivation}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=1\textwidth]{images/dvi_derivation.png}
+    \label{fig:dvi-derivation}
+\end{figure}
+% \noindent
+\clearpage
+\section{Python code for simulations}
+% \begin{lstlisting}[style=python,caption=Python code for simulations]
+\begin{minted}[mathescape, linenos,]{python}
 import numpy as np
 import matplotlib.pyplot as plt
-\end{lstlisting}
+import matplotlib 
+font = {
+        'weight' : 'bold',
+        'size'   : 12
+}
+matplotlib.rc('font', **font)
+
+class EI_Network:
+    def __init__(self):
+        self.selected_network = 0
+        self.V_I_clamp = False
+        # neuron params
+        self.beta = 1
+        self.tau_E = 20
+        self.tau_I = 10
+        self.V_init = -55
+        self.V_rest = -70
+        # connection weights
+        self.W_EI = 0.65
+        self.W_IE = 1.2
+        self.W_II = 0.5
+        self.W_EE = 0
+        # results
+        self.VI = np.array([])
+        self.VE = np.array([])
+        
+    def phi(self, V):
+        # relu activation function
+        v = self.beta * (V - self.V_init)
+        return v * (v > 0)
+    
+    def select_network(self, network_number):
+        self.selected_network = network_number
+        if network_number == 1:
+            self.W_EE = 0.5
+        elif network_number == 2:
+            # self.W_EE = 1.25
+            self.W_EE = 1.25
+        elif network_number == 3:
+            # isolated excitatory network
+            self.W_EE = 1
+            self.W_EI = 0.0
+            self.W_IE = 0.0
+            self.W_II = 1
+    
+    def set_V_I_clamp(self, V_I_clamp):
+        self.V_I_clamp = V_I_clamp
+
+    def euler_simulate(self, N_t, dt, u_e, u_i):
+        # figure out how many neurons we are simulating
+        u_e_size = len(u_e) if isinstance(u_e, list) else 1
+        u_i_size = len(u_i) if isinstance(u_i, list) else 1
+        n_neurons = max(u_e_size, u_i_size)
+        
+        # N_t+1 rows (N_t+init), n_neurons columns
+        # Column is V of a SPECIFIC neuron OVER time
+        # Row is V for ALL neurons AT a particular time
+        VI = np.zeros([N_t+1, n_neurons]) + self.V_rest
+        VE = np.zeros([N_t+1, n_neurons]) + self.V_rest
+        print(f"Simulating with V_I clamp on: {self.V_I_clamp}")
+        for t in range(1, N_t+1):
+            ve = VE[t-1]
+            vi = VI[t-1]
+            # excitatory
+            # dVE = -(ve - self.V_rest) + u_e[t]
+            dVE = -(ve - self.V_rest)  + self.W_EE * self.phi(ve) - self.W_EI * self.phi(vi) + u_e[t]
+            VE[t] = ve + dt * dVE / self.tau_E
+            # inhibitory
+            # dVI = -(vi - self.V_rest) + u_i[t]
+            dVI = -(vi - self.V_rest) + self.W_IE * self.phi(ve) - self.W_II * self.phi(vi) + u_i[t]
+            VI[t] = VI[t-1] if self.V_I_clamp else (vi + dt * dVI / self.tau_I) 
+
+        self.VI = VI
+        self.VE = VE
+    
+    def plot_V_and_Phi(self, title):
+        # plot Vs and Phi(Vs)
+        fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+        title = title if title else f'EI Network {self.selected_network}'
+        fig.suptitle(title, fontsize=16)
+        colors = ['blue', 'red', 'blue', 'red'][::-1]
+        linestype = "--" if self.selected_network == 2 else "-"
+        # V's
+        axs[0].plot(self.VE, label='$V_E$', color=colors[0], linestyle=linestype)
+        axs[0].plot(self.VI, label='$V_I$', color=colors[1], linestyle=linestype)
+        axs[0].set_xlabel('Time (ms)')
+        axs[0].set_ylabel('Voltage (mV)')
+        if self.V_I_clamp:
+            axs[0].set_ylim(*[-70, 20])
+        axs[0].legend()
+        axs[0].grid()
+        axs[0].set_title('V vs Time')
+        # Phi's
+        axs[1].plot(self.phi(self.VE), label='$\phi(V_E)$', color=colors[0], linestyle=linestype)
+        axs[1].plot(self.phi(self.VI), label='$\phi(V_I)$', color=colors[1], linestyle=linestype)
+        axs[1].set_xlabel('Time (ms)')
+        axs[1].set_ylabel('$\phi(V)$ $\delta$(mV)')
+        if self.V_I_clamp:
+            axs[0].set_ylim(*[0, 60])
+        axs[1].legend()
+        axs[1].grid()
+        axs[1].set_title('$\phi(V)$ vs Time')
+        # 
+        fig.tight_layout(pad=1.0)
+        plt.show()
+
+        def plot_2_networks(u_e, u_i, title='EI Network 1 vs 2', V_I_clamp=False):
+        """
+        Given external input and clamp settings, simulate and plot 2 networks side by side
+        """
+        colors = ['blue', 'red', 'blue', 'red'][::-1]
+        # network 1
+        network = EI_Network()
+        network.set_V_I_clamp(V_I_clamp)
+        network.select_network(1)
+        network.euler_simulate(len(u_e)-1, 1, u_e, u_i)
+        VE1 = network.VE
+        VI1 = network.VI
+        # network 2
+        network.select_network(2)
+        network.euler_simulate(len(u_e)-1, 1, u_e, u_i)
+        VE2 = network.VE
+        VI2 = network.VI
+        # plot
+        fig, axs = plt.subplots(1, 2, figsize=(12,5))
+        fig.suptitle(title, fontsize=16)
+        # V's
+        axs[0].plot(VE1, label='$V_E$ (1)', color=colors[0])
+        axs[0].plot(VI1, label='$V_I$ (1)', color=colors[1])
+        axs[0].plot(VE2, label='$V_E$ (2)', linestyle='--', color=colors[2])
+        axs[0].plot(VI2, label='$V_I$ (2)', linestyle='--', color=colors[3])
+        axs[0].set_xlabel('Time (ms)')
+        axs[0].set_ylabel('Voltage (mV)')
+        # limit y axis for clamped V_I
+        if V_I_clamp:
+            axs[0].set_ylim(*[-70, 20])
+        # axs[0].set_ylim(*y_limits)
+        axs[0].legend()
+        axs[0].grid()
+        axs[0].set_title('V vs Time')
+        # Phi's
+        axs[1].plot(network.phi(VE1), label='$\phi(V_E)$ (1)', color=colors[0])
+        axs[1].plot(network.phi(VI1), label='$\phi(V_I)$ (1)', color=colors[1])
+        axs[1].plot(network.phi(VE2), label='$\phi(V_E)$ (2)', linestyle='--', color=colors[2])
+        axs[1].plot(network.phi(VI2), label='$\phi(V_I)$ (2)', linestyle='--', color=colors[3])
+        axs[1].set_xlabel('Time (ms)')
+        axs[1].set_ylabel('$\phi(V)$ $\delta$(mV)')
+        # limit y axis for clamped V_I
+        if V_I_clamp:
+            axs[1].set_ylim(*[0, 60])
+        axs[1].legend()
+        axs[1].grid()
+        axs[1].set_title('$\phi(V)$ vs Time')
+        # 
+        fig.tight_layout(pad=1.0)
+        plt.show()
+
+# NO INPUT 
+# instantiate the network
+network = EI_Network()
+# select network 1
+network.select_network(1)
+# simulate the network
+N_t = 300
+dt = 0.1
+u_e = np.zeros(N_t+1)
+u_i = np.zeros(N_t+1)
+# plot both networks
+plot_2_networks(u_e, u_i, "Networks 1 and 2\n $u_E = u_I = 0$")
+
+# 2. STABLE INPUT
+# network 1
+# setup
+network.select_network(1)
+Nt = 500
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_I = np.zeros([Nt+1]) + 20
+# simulate
+# plot_2_networks(u_E, u_I, "Networks 1 and 2 with $u_E = u_I = 20$")
+network.euler_simulate(Nt, dt, u_E, u_I)
+network.plot_V_and_Phi("Network 1\n $u_E = u_I = 20$")
+# network 2
+# setup
+network.select_network(2)
+Nt = 500
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_I = np.zeros([Nt+1]) + 20
+# simulate
+network.euler_simulate(Nt, dt, u_E, u_I)
+network.plot_V_and_Phi("Network 2\n $u_E = u_I = 20$")
+# network 1+2
+# for contrast 
+u_E = np.zeros([Nt+1]) + 20
+u_I = np.zeros([Nt+1]) + 20
+plot_2_networks(u_E, u_I, "Networks 1 and 2\n $u_E = u_I = 20$")
+
+
+# 3. INCREASE INHIBITORY INPUT
+# network 1
+# setup
+Nt = 1000
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_I = np.zeros([Nt+1]) + 20
+u_I[500:] = 26
+network.select_network(1)
+# simulate
+network.euler_simulate(Nt, dt, u_E, u_I)
+# plot Vs and Phi(Vs)
+network.plot_V_and_Phi("Network 1\n $u_E = 20$, $u_{I(:500)} = 20$, $u_{I (500:)} = 26$")
+# 4. Network 2
+network.select_network(2)
+# setup
+Nt = 1000
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_I = np.zeros([Nt+1]) + 20
+u_I[500:] = 26
+# simulate
+network.euler_simulate(Nt, dt, u_E, u_I)
+# plot Vs and Phi(Vs)
+network.plot_V_and_Phi("Network 2\n $u_E = 20$, $u_{I(:500)} = 20$, $u_{I(500:)} = 26$")
+# Both networks
+# now for contrast, plot both networks together
+u_E = np.zeros([Nt+1]) + 20
+u_I = np.zeros([Nt+1]) + 20
+u_I[500:] = 26
+plot_2_networks(u_E, u_I, "Networks 1 and 2\n $u_E = 20$, $u_{I(:500)} = 20$, $u_{I(500:)} = 26$")
+
+# 5. INCREASE EXCITATORY INPUT
+# V_I unclamped
+# setup
+Nt = 1000
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_E[500:] = 26
+u_I = np.zeros([Nt+1]) + 20
+# simulate unclamped
+network.V_I_clamp = False
+plot_2_networks(u_E, u_I, "Networks 1 and 2.\n $V_I$ unclamped\n $u_{E(:500)} = 20$, $u_{E(500:)} = 26$, $u_I = 20$")
+# V_I clamped
+# setup
+Nt = 1000
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_E[500:] = 26
+u_I = np.zeros([Nt+1]) + 20
+# simulate clamped
+plot_2_networks(u_E, u_I, "Networks 1 and 2.\n $V_I$ clamped\n $u_{E(:500)} = 20$, $u_{E(500:)} = 26$, $u_I = 20$", V_I_clamp=True)
+
+# Clamped Unclamped Vs on the same graph
+# Combining the 2 voltage/time graphs into 1
+# simulate and save data
+Nt = 1000
+dt = 1
+u_E = np.zeros([Nt+1]) + 20
+u_E[500:] = 26
+u_I = np.zeros([Nt+1]) + 20
+# setup
+network = EI_Network()
+# unclamped
+network.V_I_clamp = False
+network.select_network(1)
+network.euler_simulate(Nt, dt, u_E, u_I)
+VE1u = network.VE
+VI1u = network.VI
+network.select_network(2)
+network.euler_simulate(Nt, dt, u_E, u_I)
+VE2u = network.VE
+VI2u = network.VI
+# clamped
+network.V_I_clamp = True
+network.select_network(1)
+network.euler_simulate(Nt, dt, u_E, u_I)
+VE1c = network.VE
+VI1c = network.VI
+network.select_network(2)
+network.euler_simulate(Nt, dt, u_E, u_I)
+VE2c = network.VE
+VI2c = network.VI
+
+# plot
+colors = ['blue', 'red', 'blue', 'red'][::-1]
+title = "Networks 1 and 2.\n $u_{E(:500)} = 20$, $u_{E(500:)} = 26$, $u_I = 20$"
+
+fig, axs = plt.subplots(1, 2, figsize=(12,5))
+fig.suptitle(title, fontsize=16)
+# V's
+axs[0].plot(VE1u, label='$V_E$ (1)', color=colors[0])
+axs[0].plot(VI1u, label='$V_I$ (1)', color=colors[1])
+axs[0].plot(VE2u, label='$V_E$ (2)', linestyle='--', color=colors[2])
+axs[0].plot(VI2u, label='$V_I$ (2)', linestyle='--', color=colors[3])
+axs[0].set_xlabel('Time (ms)')
+axs[0].set_ylabel('Voltage (mV)')
+axs[0].set_ylim([-70, -20])
+axs[0].legend()
+axs[0].grid()
+axs[0].set_title('$V$ vs Time\n$V_I$ unclapmed')
+# Phi's
+axs[1].plot(VE1c, label='$V_E$ (1)', color=colors[0])
+axs[1].plot(VI1c, label='$V_I$ (1)', color=colors[1])
+# axs[1].plot(VI1c, label='$V_I$ (1)', color=colors[1])
+axs[1].plot(VE2c, label='$V_E$ (2)', linestyle='--', color=colors[2])
+axs[1].plot(VI2c, label='$V_I$ (2)', linestyle='--', color=colors[3])
+# axs[1].plot(VI2c, label='$V_I$ (2)', linestyle='--', color=colors[3])
+axs[1].set_xlabel('Time (ms)')
+axs[1].set_ylabel('Voltage (mV)')
+axs[1].set_ylim([-70, -20])
+axs[1].legend()
+axs[1].grid()
+axs[1].set_title('$V$ vs Time\n$V_I$ clapmed')
+# 
+fig.tight_layout(pad=1.0)
+plt.show()
+
+\end{minted}
 
 \end{document}
